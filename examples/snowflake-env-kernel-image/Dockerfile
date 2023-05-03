@@ -1,4 +1,7 @@
-FROM continuumio/miniconda3:23.3.1-0
+FROM python:3.8
 
-COPY environment.yml .
-RUN conda env update -f environment.yml --prune
+RUN pip install ipykernel && \
+        python -m ipykernel install --sys-prefix
+
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
